@@ -1,0 +1,235 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red255\green0\blue0;\red0\green0\blue255;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sa200\sl276\slmult1\qc\lang22\f0\fs44 Tutorial - Instalar masternode no Ubuntu Server \cf1 18.04\par
+\cf0\par
+\fs22 Instale um masternode para sua moeda no Ubuntu Server \cf1 18.04 \cf0 com o seguinte tutorial.\par
+\par
+Abra sua carteira.\par
+\par
+V\'e1 para Ferramentas -> console de depura\'e7\'e3o.\par
+\par
+Digite o seguinte comando RPC para criar um endere\'e7o para a taxa de masternode:\par
+\par
+getnewaddress\par
+\par
+Sa\'edda de exemplo\par
+\par
+TRPLV4dXmEFMSgXg2Xu6skN9pmw8TAo4N5\par
+\par
+Volte para a vis\'e3o geral da carteira.\par
+\par
+Pressione o bot\'e3o da barra de ferramentas "Enviar".\par
+\par
+Digite o endere\'e7o do comando RPC \ldblquote getnewaddress\rdblquote  atr\'e1s do texto "Pay To:". (Exemplo: TRPLV4dXmEFMSgXg2Xu6skN9pmw8TAo4N5 )\par
+\par
+Insira a seguinte quantidade de moedas atr\'e1s do texto "Quantidade:": 5\par
+\par
+Clique no bot\'e3o "Enviar".\par
+\par
+Espere at\'e9 que a transa\'e7\'e3o seja confirmada por 10 blocos.\par
+\par
+Volte para o console da sua carteira.\par
+\par
+Digite o seguinte comando RPC para criar um endere\'e7o para o material do masternode:\par
+\par
+getnewaddress\par
+\par
+Sa\'edda de exemplo\par
+\par
+TFi68ygQkc8h27DyeBwPykVHjF6oh8PGkH\par
+\par
+Volte para a vis\'e3o geral da carteira.\par
+\par
+Pressione o bot\'e3o da barra de ferramentas "Enviar".\par
+\par
+Digite o endere\'e7o do comando RPC \ldblquote getnewaddress\rdblquote  atr\'e1s do texto "Pay To:". (Exemplo: TFi68ygQkc8h27DyeBwPykVHjF6oh8PGkH )\par
+\par
+Insira a seguinte quantidade de moedas atr\'e1s do texto "Quantidade:": 10000\par
+\par
+Clique no bot\'e3o "Enviar".\par
+\par
+Espere at\'e9 que a transa\'e7\'e3o seja confirmada por 15 blocos.\par
+\par
+Volte para o console da sua carteira.\par
+\par
+Identifique a transa\'e7\'e3o com o seguinte comando RPC:\par
+\par
+masternode outputs\par
+\par
+Sa\'edda de exemplo\par
+\par
+\{\par
+ "fdab9dff1ff9caf5d291905ad43b9f7d69775189d4d22cb085d7fedd94ea1c6a": "0"\par
+\}\par
+\par
+Gere um par de chaves BLS com o seguinte comando RPC:\par
+\par
+bls generate\par
+\par
+Sa\'edda de exemplo\par
+\par
+\{\par
+ "secret": "0acbf6f183d0c9b794b9bc0dba25f8a1a1eca21aa4f2e4a86ecd3120a59efb35",\par
+ "public": "064bb1741f4707cfe3629176857c41e0d23cbe751061fe5d0d67b506db10c8f3f6f2b684c3cec8e4a128193a001d12e9"\par
+\}\par
+\par
+Digite o seguinte comando RPC para criar um endere\'e7o para o propriet\'e1rio do masternode:\par
+\par
+getnewaddress\par
+\par
+Sa\'edda de exemplo\par
+\par
+TWXGVYPHGA4gWcZ9Zp2qnubFVNagvorwEN\par
+\par
+Digite o seguinte comando RPC, para criar um endere\'e7o a ser usado para vota\'e7\'e3o de propostas:\par
+\par
+getnewaddress\par
+\par
+Sa\'edda de exemplo\par
+\par
+TSsrnbtJGYD1WmVsrsvauuwxibJyqkkqqL\par
+\par
+Digite o seguinte comando RPC, para criar um endere\'e7o para receber o pr\'eamio Masternode:\par
+\par
+getnewaddress\par
+\par
+Sa\'edda de exemplo\par
+\par
+TEXj9AgdCh1giGmr1BXpYsngmkMkthNngD\par
+\par
+Prepare a transa\'e7\'e3o ProRegTx modificando a linha a seguir.\par
+\par
+protx register_prepare fdab9dff1ff9caf5d291905ad43b9f7d69775189d4d22cb085d7fedd94ea1c6a 0 203.0.113.53:43110 TWXGVYPHGA4gWcZ9Zp2qnubFVNagvorwEN 064bb1741f4707cfe3629176857c41e0d23cbe751061fe5d0d67b506db10c8f3f6f2b684c3cec8e4a128193a001d12e9 TSsrnbtJGYD1WmVsrsvauuwxibJyqkkqqL 0 TEXj9AgdCh1giGmr1BXpYsngmkMkthNngD TRPLV4dXmEFMSgXg2Xu6skN9pmw8TAo4N5\par
+\par
+fdab9dff1ff9caf5d291905ad43b9f7d69775189d4d22cb085d7fedd94ea1c6a - ID de transa\'e7\'e3o do comando RPC \ldblquote sa\'eddas masternode\rdblquote .\par
+\par
+0 - Um d\'edgito do comando RPC \ldblquote sa\'eddas masternode\rdblquote .\par
+\par
+203.0.113.53:43110 - Endere\'e7o IPv4 externo do seu VPS.\par
+\par
+TWXGVYPHGA4gWcZ9Zp2qnubFVNagvorwEN - Endere\'e7o do propriet\'e1rio do masternode.\par
+\par
+064bb1741f4707cfe3629176857c41e0d23cbe751061fe5d0d67b506db10c8f3f6f2b684c3cec8e4a128193a001d12e9 - valor \ldblquote p\'fablico\rdblquote  do comando RPC \ldblquote gera\'e7\'e3o de bls\rdblquote .\par
+\par
+TSsrnbtJGYD1WmVsrsvauuwxibJyqkkqqL - Endere\'e7o usado para vota\'e7\'e3o da proposta.\par
+\par
+TEXj9AgdCh1giGmr1BXpYsngmkMkthNngD - Endere\'e7o para receber a recompensa do masternode.\par
+\par
+TRPLV4dXmEFMSgXg2Xu6skN9pmw8TAo4N5 - Endere\'e7o para onde voc\'ea envia a taxa de valor do masternode.\par
+\par
+Cole a linha modificada em seu console.\par
+\par
+Sa\'edda de exemplo\par
+\par
+\{\par
+ "tx": "0300010001a55ee8d6ad1d5c1409a5328f4e53e80e3e7c83cf85253594141505fa64c5eeec0000000000feffffff0121dff505000000001976a9144f18fd993c0f9458fafb4985536dd358e9899a9f88ac00000000d10100000000006a1cea94ddfed785b02cd2d4895177697d9f3bd45a9091d2f5caf91fff9dabfd0000000000000000000000000000ffff88909c3714c4e172bd9c230db9cac3e446945cff2ea6720c2eca064bb1741f4707cfe3629176857c41e0d23cbe751061fe5d0d67b506db10c8f3f6f2b684c3cec8e4a128193a001d12e9b9772f1f7b0af05a67883806a4f60ddde4ecbf9e00001976a9143206f92dd6acc1a481cbb88fcadc19d0507bcb7d88ac0c5537044361500975adba10f9299f684f62a7f544e8e671638fee2c3914349f00",\par
+ "collateralAddress": "TRPLV4dXmEFMSgXg2Xu6skN9pmw8TAo4N5",\par
+ "signMessage": "TEXj9AgdCh1giGmr1BXpYsngmkMkthNngD|0|TWXGVYPHGA4gWcZ9Zp2qnubFVNagvorwEN|TSsrnbtJGYD1WmVsrsvauuwxibJyqkkqqL|ac19e80b02d4e8a27feb42073114070a281a2b788ba064803e8064d259b22ebc"\par
+\}\par
+\par
+\par
+Assine a transa\'e7\'e3o ProRegTx modificando a linha a seguir.\par
+\par
+signmessage "TRPLV4dXmEFMSgXg2Xu6skN9pmw8TAo4N5" "TEXj9AgdCh1giGmr1BXpYsngmkMkthNngD|0|TWXGVYPHGA4gWcZ9Zp2qnubFVNagvorwEN|TSsrnbtJGYD1WmVsrsvauuwxibJyqkkqqL|ac19e80b02d4e8a27feb42073114070a281a2b788ba064803e8064d259b22ebc"\par
+\par
+TRPLV4dXmEFMSgXg2Xu6skN9pmw8TAo4N5 - valor \ldblquote collateralAddress\rdblquote  do comando RPC \ldblquote protx register_prepare\rdblquote .\par
+\par
+TEXj9AgdCh1giGmr1BXpYsngmkMkthNngD | 0 | TWXGVYPHGA4gWcZ9Zp2qnubFVNagvorwEN | TSsrnbtJGYD1WmVsrsvauuwxibJyqkkqqL | ac19e80b02d4e8a27feb42073114070a281a2b788ba064803e8064d259b22ebc - valor \ldblquote signMessage\rdblquote  do comando RPC \ldblquote protx register_prepare\rdblquote .\par
+\par
+Cole a linha modificada no console de sua carteira.\par
+\par
+Sa\'edda de exemplo\par
+\par
+H/d9tkCSzqdYh8qLL1c+KDIlrb4vtFSfdxd88XDc3U/hRZ6lMuAR8TULy7vh1YXGk6AYFFV1xyPNuEdZVMN9SdI=\par
+\par
+Envie a transa\'e7\'e3o ProRegTx modificando a linha a seguir.\par
+\par
+protx register_submit 0300010001a55ee8d6ad1d5c1409a5328f4e53e80e3e7c83cf85253594141505fa64c5eeec0000000000feffffff0121dff505000000001976a9144f18fd993c0f9458fafb4985536dd358e9899a9f88ac00000000d10100000000006a1cea94ddfed785b02cd2d4895177697d9f3bd45a9091d2f5caf91fff9dabfd0000000000000000000000000000ffff88909c3714c4e172bd9c230db9cac3e446945cff2ea6720c2eca064bb1741f4707cfe3629176857c41e0d23cbe751061fe5d0d67b506db10c8f3f6f2b684c3cec8e4a128193a001d12e9b9772f1f7b0af05a67883806a4f60ddde4ecbf9e00001976a9143206f92dd6acc1a481cbb88fcadc19d0507bcb7d88ac0c5537044361500975adba10f9299f684f62a7f544e8e671638fee2c3914349f00 H/d9tkCSzqdYh8qLL1c+KDIlrb4vtFSfdxd88XDc3U/hRZ6lMuAR8TULy7vh1YXGk6AYFFV1xyPNuEdZVMN9SdI=\par
+\par
+0300010001a55ee8d6ad1d5c1409a5328f4e53e80e3e7c83cf85253594141505fa64c5eeec0000000000feffffff0121dff505000000001976a9144f18fd993c0f9458fafb4985536dd358e9899a9f88ac00000000d10100000000006a1cea94ddfed785b02cd2d4895177697d9f3bd45a9091d2f5caf91fff9dabfd0000000000000000000000000000ffff88909c3714c4e172bd9c230db9cac3e446945cff2ea6720c2eca064bb1741f4707cfe3629176857c41e0d23cbe751061fe5d0d67b506db10c8f3f6f2b684c3cec8e4a128193a001d12e9b9772f1f7b0af05a67883806a4f60ddde4ecbf9e00001976a9143206f92dd6acc1a481cbb88fcadc19d0507bcb7d88ac0c5537044361500975adba10f9299f684f62a7f544e8e671638fee2c3914349f00 - valor \ldblquote tx\rdblquote  do comando RPC \ldblquote protx register_prepare\rdblquote .\par
+\par
+H / d9tkCSzqdYh8qLL1c + KDIlrb4vtFSfdxd88XDc3U / hRZ6lMuAR8TULy7vh1YXGk6AYFFV1xyPNuEdZVMN9SdI = - Sa\'edda do comando RPC \ldblquote signmessage\rdblquote .\par
+\par
+Cole a linha modificada no console de sua carteira.\par
+\par
+Sa\'edda de exemplo\par
+\par
+7da2e1187202a1a497beca05e0e53a6e4df0dc06046f72fbf8b61c942db2982a\par
+\par
+\par
+Abra o putty e conecte usando SSH com seu servidor Ubuntu 18.04.\par
+\par
+Atualize seu servidor Ubuntu com o seguinte comando:\par
+\par
+sudo apt-get update && sudo apt-get upgrade -y\par
+\par
+Instale as depend\'eancias necess\'e1rias com o seguinte comando:\par
+\par
+sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-all-dev libboost-program-options-dev libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler unzip software-properties-common cmake -y\par
+\par
+Digite o seguinte comando para voltar ao seu diret\'f3rio inicial:\par
+\par
+cd $HOME\par
+\par
+Instale o reposit\'f3rio ppa: bitcoin / bitcoin com o seguinte comando:\par
+\par
+sudo add-apt-repository ppa:bitcoin/bitcoin\par
+\par
+Confirme a instala\'e7\'e3o do reposit\'f3rio pressionando a tecla Enter. enter\par
+\par
+Instale o Berkeley DB com o seguinte comando:\par
+\par
+sudo apt-get update && sudo apt-get install libdb4.8-dev libdb4.8++-dev -y\par
+\par
+Baixe o daemon Linux para sua carteira com o seguinte comando:\par
+\par
+wget "{\field{\*\fldinst{HYPERLINK "https://dl.walletbuilders.com/download?customer=2bcfa42bf9113c8fec41739dcd65d869673fb9531699f62f6c&filename=jundcoin-daemon-linux.tar.gz"}}{\fldrslt{\ul\cf2 https://dl.walletbuilders.com/download?customer=2bcfa42bf9113c8fec41739dcd65d869673fb9531699f62f6c&filename=jundcoin-daemon-linux.tar.gz}}}\f0\fs22 " -O jundcoin-daemon-linux.tar.gz\par
+\par
+Extraia o arquivo tar com o seguinte comando:\par
+\par
+tar -xzvf jundcoin-daemon-linux.tar.gz\par
+\par
+Baixe as ferramentas do Linux para sua carteira com o seguinte comando:\par
+\par
+wget "{\field{\*\fldinst{HYPERLINK "https://dl.walletbuilders.com/download?customer=2bcfa42bf9113c8fec41739dcd65d869673fb9531699f62f6c&filename=jundcoin-qt-linux.tar.gz"}}{\fldrslt{\ul\cf2 https://dl.walletbuilders.com/download?customer=2bcfa42bf9113c8fec41739dcd65d869673fb9531699f62f6c&filename=jundcoin-qt-linux.tar.gz}}}\f0\fs22 " -O jundcoin-qt-linux.tar.gz\par
+\par
+Extraia o arquivo tar com o seguinte comando:\par
+\par
+tar -xzvf jundcoin-qt-linux.tar.gz\par
+\par
+Digite o seguinte comando para instalar o daemon e as ferramentas para sua carteira:\par
+\par
+sudo mv jundcoind jundcoin-cli jundcoin-tx /usr/bin/\par
+\par
+Crie o diret\'f3rio de dados para sua moeda com o seguinte comando:\par
+\par
+mkdir $HOME/.jundcoin\par
+\par
+Abra o nano.\par
+\par
+nano $HOME/.jundcoin/jundcoin.conf -t\par
+\par
+Cole o seguinte no nano.\par
+\par
+rpcuser=rpc_jundcoin\par
+rpcpassword=dR2oBQ3K1zYMZQtJFZeAerhWxaJ5Lqeq9J2\par
+rpcbind=0.0.0.0\par
+rpcallowip=127.0.0.1\par
+listen=1\par
+server=1\par
+daemon=1\par
+maxconnections=125\par
+masternodeblsprivkey=0acbf6f183d0c9b794b9bc0dba25f8a1a1eca21aa4f2e4a86ecd3120a59efb35\par
+externalip=203.0.113.53\par
+\par
+203.0.113.53 - Endere\'e7o IPv4 externo do seu VPS.\par
+\par
+0acbf6f183d0c9b794b9bc0dba25f8a1a1eca21aa4f2e4a86ecd3120a59efb35 - valor \ldblquote secreto\rdblquote  do comando RPC \ldblquote bls gerar\rdblquote .\par
+\par
+Salve o arquivo com o atalho de teclado ctrl+ x.\par
+\par
+Digite o seguinte comando para iniciar seu masternode:\par
+\par
+jundcoind\par
+}
+ 

@@ -1,0 +1,233 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Arial Black;}}
+{\colortbl ;\red255\green0\blue0;\red0\green0\blue255;\red0\green77\blue187;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sa200\sl276\slmult1\qc\lang22\f0\fs44 Tutorial - Instalar um Piscina de Minera\'e7\'e3o no Ubuntu Server \cf1\b\f1 18.04\b0\f0\par
+\pard\sa200\sl276\slmult1\fs22\par
+\pard\sa200\sl276\slmult1\qc\cf0 Instale um pool de minera\'e7\'e3o no Ubuntu Server 18.04 com o seguinte tutorial.\par
+\par
+Atualize seu servidor Ubuntu com o seguinte comando:\par
+\par
+sudo apt-get update && sudo apt-get upgrade -y\par
+\par
+Instale as depend\'eancias necess\'e1rias com o seguinte comando:\par
+\par
+sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-all-dev libboost-program-options-dev -y\par
+\par
+Instale as depend\'eancias adicionais com o seguinte comando:\par
+\par
+sudo apt-get install libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler unzip software-properties-common redis-server npm git nano cmake screen -y\par
+\par
+Instale o reposit\'f3rio ppa: bitcoin / bitcoin com o seguinte comando:\par
+\par
+sudo add-apt-repository ppa:bitcoin/bitcoin\par
+\par
+Confirme a instala\'e7\'e3o do reposit\'f3rio pressionando a tecla Enter. enter\par
+\par
+Instale o Berkeley DB com o seguinte comando:\par
+\par
+sudo apt-get update && sudo apt-get install libdb4.8-dev libdb4.8++-dev -y\par
+\par
+Baixe o daemon Linux para sua carteira com o seguinte comando:\par
+\par
+wget "{\field{\*\fldinst{HYPERLINK "https://dl.walletbuilders.com/download?customer=2bcfa42bf9113c8fec41739dcd65d869673fb9531699f62f6c&filename=jundcoin-daemon-linux.tar.gz"}}{\fldrslt{\ul\cf2 https://dl.walletbuilders.com/download?customer=2bcfa42bf9113c8fec41739dcd65d869673fb9531699f62f6c&filename=jundcoin-daemon-linux.tar.gz}}}\f0\fs22 " -O jundcoin-daemon-linux.tar.gz\par
+\par
+Extraia o arquivo tar com o seguinte comando:\par
+\par
+tar -xzvf jundcoin-daemon-linux.tar.gz\par
+\par
+Baixe as ferramentas do Linux para sua carteira com o seguinte comando:\par
+\par
+wget "{\field{\*\fldinst{HYPERLINK "https://dl.walletbuilders.com/download?customer=2bcfa42bf9113c8fec41739dcd65d869673fb9531699f62f6c&filename=jundcoin-qt-linux.tar.gz"}}{\fldrslt{\ul\cf2 https://dl.walletbuilders.com/download?customer=2bcfa42bf9113c8fec41739dcd65d869673fb9531699f62f6c&filename=jundcoin-qt-linux.tar.gz}}}\f0\fs22 " -O jundcoin-qt-linux.tar.gz\par
+\par
+Extraia o arquivo tar com o seguinte comando:\par
+\par
+tar -xzvf jundcoin-qt-linux.tar.gz\par
+\par
+Digite o seguinte comando para instalar o daemon e as ferramentas para sua carteira:\par
+\par
+sudo mv jundcoind jundcoin-cli jundcoin-tx /usr/bin/\par
+\par
+Digite o seguinte comando para abrir seu diret\'f3rio inicial:\par
+\par
+cd $HOME\par
+\par
+Crie o diret\'f3rio de dados para sua moeda com o seguinte comando:\par
+\par
+mkdir $HOME/.jundcoin\par
+\par
+Abra o nano.\par
+\par
+nano $HOME/.jundcoin/jundcoin.conf -t\par
+\par
+Cole o seguinte no nano.\par
+\par
+rpcuser=rpc_jundcoin\par
+rpcpassword=dR2oBQ3K1zYMZQtJFZeAerhWxaJ5Lqeq9J2\par
+rpcbind=0.0.0.0\par
+rpcallowip=127.0.0.1\par
+listen=1\par
+server=1\par
+txindex=1\par
+daemon=1\par
+paytxfee=0.0002\par
+deprecatedrpc=accounts\par
+addresstype=legacy\par
+addnode=node2.walletbuilders.com\par
+\par
+Salve o arquivo com o atalho de teclado ctrl+ x.\par
+\par
+Digite o seguinte comando para iniciar seu daemon:\par
+\par
+jundcoind\par
+\par
+Digite o seguinte comando para criar um novo endere\'e7o de recebimento para o seu daemon:\par
+\par
+jundcoin-cli getnewaddress ""\par
+\par
+Sa\'edda de exemplo.\par
+\par
+4UyrFQrAoNQMEMqNhZTareRmjeU68bLiop\par
+\par
+Digite os seguintes comandos para instalar o NOMP:\par
+\par
+git clone {\field{\*\fldinst{HYPERLINK "https://github.com/walletbuilders/node-open-mining-portal.git"}}{\fldrslt{\ul\cf2 https://github.com/walletbuilders/node-open-mining-portal.git}}}\f0\fs22  nomp\par
+cd nomp\par
+npm update\par
+\par
+Digite o seguinte comando para baixar a atualiza\'e7\'e3o do algoritmo X11:\par
+\par
+wget {\field{\*\fldinst{HYPERLINK "https://raw.githubusercontent.com/walletbuilders/nomp-x11-stratum-patch/master/nomp_x11_stratum_patch.diff"}}{\fldrslt{\ul\cf2 https://raw.githubusercontent.com/walletbuilders/nomp-x11-stratum-patch/master/nomp_x11_stratum_patch.diff}}}\f0\fs22\par
+\par
+Digite o seguinte comando para atualizar o m\'f3dulo stratum-pool para o algoritmo X11:\par
+\par
+patch -p1 < nomp_x11_stratum_patch.diff\par
+\par
+Digite o seguinte comando para criar o arquivo settings.json:\par
+\par
+cp config_example.json config.json\par
+\par
+Abra o nano.\par
+\par
+nano config.json -t\par
+\par
+Modifique os seguintes valores no arquivo config.json.\par
+\par
+host - Altere o valor \ldblquote 0.0.0.0\rdblquote  com o endere\'e7o IPv4 do seu servidor.\par
+\par
+stratumHost - Altere o valor \ldblquote cryppit.com\rdblquote  com o endere\'e7o IPv4 do seu servidor.\par
+\par
+Salve o arquivo com o atalho de teclado ctrl+ x.\par
+\par
+Digite os seguintes comandos para criar o arquivo de configura\'e7\'e3o para sua moeda:\par
+\par
+cd coins\par
+cp darkcoin.json jundcoin.json\par
+\par
+Abra o nano.\par
+\par
+nano jundcoin.json -t\par
+\par
+Modifique os seguintes valores no arquivo jundcoin.json.\par
+\par
+nome - \ldblquote Darkcoin\rdblquote  -> \ldblquote Jundcoin\rdblquote .\par
+\par
+s\'edmbolo - \ldblquote DRK\rdblquote  -> \ldblquote JDC\rdblquote .\par
+\par
+Salve o arquivo com a combina\'e7\'e3o de teclado ctrl+ x.\par
+\par
+Digite os seguintes comandos para criar o arquivo de configura\'e7\'e3o do seu pool:\par
+\par
+cd ../pool_configs\par
+cp litecoin_example.json jundcoin_pool.json\par
+\par
+Abra o nano.\par
+\par
+nano jundcoin_pool.json -t\par
+\par
+Modifique os seguintes valores no arquivo jundcoin.json.\par
+\par
+ativado - \ldblquote falso\rdblquote  -> \ldblquote verdadeiro\rdblquote .\par
+\par
+moeda - \ldblquote litecoin.json\rdblquote  -> \ldblquote jundcoin.json\rdblquote .\par
+\par
+endere\'e7o - \ldblquote n4jSe18kZMCdGcZqaYprShXW6EH1wivUK1\rdblquote  -> Recebendo endere\'e7o do comando RPC \ldblquote getaccountaddress" "\rdblquote .\par
+\par
+RewardsRecipients - Remova todos os destinat\'e1rios.\par
+\par
+Pagamento m\'ednimo - \ldblquote 70\rdblquote  -> \ldblquote 0,01\rdblquote .\par
+\par
+"processamento de pagamento" -> porta - \ldblquote 19332\rdblquote  -> \ldblquote 43109\rdblquote .\par
+\par
+"paymentProcessing" -> usu\'e1rio - \ldblquote testuser\rdblquote  -> \ldblquote rpc_jundcoin\rdblquote .\par
+\par
+"paymentProcessing" -> senha - \ldblquote testpass\rdblquote  -> \ldblquote dR2oBQ3K1zYMZQtJFZeAerhWxaJ5Lqeq9J2\rdblquote .\par
+\par
+"daemons" -> porta - \ldblquote 19332\rdblquote  -> \ldblquote 43109\rdblquote .\par
+\par
+"daemons" -> usu\'e1rio - \ldblquote testuser\rdblquote  -> \ldblquote rpc_jundcoin\rdblquote .\par
+\par
+"daemons" -> senha - \ldblquote testpass\rdblquote  -> \ldblquote dR2oBQ3K1zYMZQtJFZeAerhWxaJ5Lqeq9J2\rdblquote .\par
+\par
+p2p - \ldblquote verdadeiro\rdblquote  -> \ldblquote falso\rdblquote .\par
+\par
+3008 -> diff - \ldblquote 8\rdblquote  -> \ldblquote 0,01\rdblquote .\par
+\par
+Salve o arquivo com o atalho de teclado ctrl+ x.\par
+\par
+Digite o seguinte comando para abrir uma sess\'e3o de tela:\par
+\par
+screen\par
+\par
+Digite os seguintes comandos para iniciar sua piscina de minera\'e7\'e3o:\par
+\par
+cd $HOME/nomp\par
+sudo node init.js\par
+\par
+Pressione o atalho de teclado ctrl+ a+ dpara desconectar da sua sess\'e3o de tela.\par
+\par
+\par
+Instru\'e7\'f5es para minerar com sua piscina de minera\'e7\'e3o.\par
+\par
+Abra sua carteira.\par
+\par
+V\'e1 para Ferramentas -> console de depura\'e7\'e3o.\par
+Este \'e9 o console onde voc\'ea executa comandos RPC.\par
+\par
+Digite o seguinte comando para criar um endere\'e7o de recebimento legado para seu minerador:\par
+\par
+getnewaddress "" "legacy"\par
+\par
+Sa\'edda de exemplo.\par
+\par
+4UyrFQrAoNQMEMqNhZTareRmjeU68bLiop\par
+\par
+Clique aqui para baixar cpuminer-multi e extrair o arquivo zip.\par
+\par
+Abra "Executar" com o atalho de teclado winkey+ r.\par
+\par
+Digite o seguinte texto atr\'e1s de "Abrir": bloco de notas\par
+\par
+Pressione o bot\'e3o "OK".\par
+\par
+Modifique os seguintes valores no texto a seguir.\par
+\par
+cpuminer-gw64-corei7.exe -a x11 -o stratum+tcp://203.0.113.53:3008 -u 4UyrFQrAoNQMEMqNhZTareRmjeU68bLiop -p anything\par
+\par
+203.0.113.53 - \ldblquote 203.0.113.53\rdblquote  -> endere\'e7o IPv4 do seu VPS.\par
+\par
+4UyrFQrAoNQMEMqNhZTareRmjeU68bLiop - \ldblquote TP56yqPtRTkse49B96sHzo2B6v48MV24vP\rdblquote  -> Recebendo endere\'e7o do comando RPC \ldblquote getnewaddress\rdblquote  para seu minerador.\par
+\par
+Cole o texto modificado no bloco de notas.\par
+\par
+Clique no item de menu "Arquivo" -> "Salvar como ...".\par
+\par
+Surgir\'e1 a caixa de di\'e1logo Abrir, clique em "Salvar como tipo" e selecione a op\'e7\'e3o "Todos os arquivos (*. *)".\par
+\par
+Digite o seguinte texto atr\'e1s de "Nome do arquivo": mine.bat\par
+\par
+Clique na barra de menu, abra o diret\'f3rio onde voc\'ea extraiu pooler-cpuminer-2.5.0-win64.zip e pressione a tecla Enter. enter\par
+\par
+Clique no bot\'e3o "Salvar".\par
+\par
+Execute \cf3 mine.bat \cf0 para minerar com sua piscina de minera\'e7\'e3o.\par
+}
+ 
